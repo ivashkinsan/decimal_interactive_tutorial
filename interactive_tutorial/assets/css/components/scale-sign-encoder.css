@@ -1,0 +1,17 @@
+
+.code-display {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 15px;
+}
+
+.code-display pre {
+    margin: 0;
+}
+
+.code-display code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1em;
+}

@@ -1,0 +1,100 @@
+/* Content Area */
+.content {
+    flex-grow: 1;
+    padding: 40px;
+    background-color: #fff;
+}
+
+.content header h1 {
+    color: #333;
+    margin-top: 0;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 20px;
+}
+
+.content section p {
+    font-size: 1.1em;
+}
+
+.content section h3 {
+    color: #0056b3;
+    margin-top: 30px;
+}
+
+/* Code Blocks */
+pre {
+    background-color: #2d2d2d;
+    color: #f8f8f2;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: 'Fira Code', 'Courier New', monospace;
+}
+
+code {
+    font-family: 'Fira Code', 'Courier New', monospace;
+    background-color: #e0e0e0;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+pre code {
+    color: inherit; /* Inherit from pre, which is light */
+    background-color: transparent; /* Remove the light background */
+}
+
+/* Interactive Example Base */
+.interactive-example {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.interactive-example .inputs {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.interactive-example input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.interactive-example button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.interactive-example button:hover {
+    background-color: #0056b3;
+}
+
+.interactive-example #result {
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 1.2em;
+    white-space: pre-wrap;
+    line-height: 1.5;
+}
+
+.interactive-example #result.monospace {
+    font-family: 'Fira Code', 'Courier New', monospace;
+}
+
+.controls {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}

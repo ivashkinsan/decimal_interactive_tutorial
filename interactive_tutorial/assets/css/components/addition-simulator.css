@@ -1,0 +1,47 @@
+/* Addition Simulator */
+.add-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.add-visualization {
+    font-family: 'Fira Code', monospace;
+    font-size: 1.5em;
+    line-height: 1.2;
+}
+.add-row {
+    display: flex;
+    justify-content: flex-end;
+}
+.op-row { 
+    justify-content: flex-start;
+    padding-left: 5px; /* Tweak alignment of + sign */
+}
+.line-row hr { 
+    width: 100%;
+    border-top: 2px solid #333;
+    border-bottom: 0;
+}
+.digit-box {
+    width: 30px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+.digit-box.carry {
+    height: 30px;
+    line-height: 30px;
+    color: #c0392b;
+    font-size: 0.8em;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+.digit-box.carry.active {
+    opacity: 1;
+}
+.digit-box.active {
+    background-color: #d6eaff;
+    border-radius: 4px;
+}

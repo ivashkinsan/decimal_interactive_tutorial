@@ -1,0 +1,26 @@
+
+export const filesContent = {
+    's21_add_mantissa.c': { title: 's21_add_mantissa.c', description: 'Складывает мантиссы двух decimal чисел.', interactive: 'file-explainer' },
+    's21_bank_rounding.c': { title: 's21_bank_rounding.c', description: 'Реализует банковское округление.', interactive: 'file-explainer' },
+    's21_decrease_scale.c': { title: 's21_decrease_scale.c', description: 'Уменьшает scale на 1 и отбрасывает последнюю цифру мантиссы.', interactive: 'file-explainer' },
+    's21_divide_by_10.c': { title: 's21_divide_by_10.c', description: 'Делит мантиссу на 10.', interactive: 'file-explainer' },
+    's21_get_scale.c': { title: 's21_get_scale.c', description: 'Извлекает scale из bits[3].', interactive: 'file-explainer' },
+    's21_get_sign.c': { title: 's21_get_sign.c', description: 'Извлекает знак из bits[3].', interactive: 'file-explainer' },
+    's21_is_equal.c': { title: 's21_is_equal.c', description: 'Реализация s21_is_equal.', interactive: 'file-explainer' },
+    's21_is_even.c': { title: 's21_is_even.c', description: 'Проверяет число на четность.', interactive: 'file-explainer' },
+    's21_is_greater.c': { title: 's21_is_greater.c', description: 'Реализация s21_is_greater.', interactive: 'file-explainer' },
+    's21_is_greater_or_equal.c': { title: 's21_is_greater_or_equal.c', description: 'Реализация s21_is_greater_or_equal.', interactive: 'file-explainer' },
+    's21_is_less.c': { title: 's21_is_less.c', description: 'Реализация s21_is_less.', interactive: 'file-explainer' },
+    's21_is_less_or_equal.c': { title: 's21_is_less_or_equal.c', description: 'Реализация s21_is_less_or_equal.', interactive: 'file-explainer' },
+    's21_is_not_equal.c': { title: 's21_is_not_equal.c', description: 'Реализация s21_is_not_equal.', interactive: 'file-explainer' },
+    's21_is_zero.c': { title: 's21_is_zero.c', description: 'Проверяет, равна ли мантисса нулю.', interactive: 'file-explainer' },
+    's21_mantissa_compare.c': { title: 's21_mantissa_compare.c', description: 'Сравнивает мантиссы двух чисел.', interactive: 'file-explainer' },
+    's21_multiply_by_10.c': { title: 's21_multiply_by_10.c', description: 'Умножает мантиссу на 10.', interactive: 'file-explainer' },
+    's21_normalize.c': { title: 's21_normalize.c', description: 'Приводит два числа к общему scale.', interactive: 'file-explainer' },
+    's21_set_scale.c': { title: 's21_set_scale.c', description: 'Устанавливает значение scale.', interactive: 'file-explainer' },
+    's21_set_sign.c': { title: 's21_set_sign.c', description: 'Устанавливает знак числа.', interactive: 'file-explainer' },
+    's21_shift_left.c': { title: 's21_shift_left.c', description: 'Сдвигает мантиссу влево.', interactive: 'file-explainer' },
+    's21_shift_right.c': { title: 's21_shift_right.c', description: 'Сдвигает мантиссу вправо.', interactive: 'file-explainer' },
+    's21_will_overflow_add.c': { title: 's21_will_overflow_add.c', description: 'Проверяет переполнение при сложении.', interactive: 'file-explainer' },
+    's21_will_overflow_left.c': { title: 's21_will_overflow_left.c', description: 'Проверяет переполнение при сдвиге влево.', interactive: 'file-explainer' }
+};
