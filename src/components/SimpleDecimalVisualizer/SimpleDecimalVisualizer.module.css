@@ -1,0 +1,69 @@
+.visualizerContainer {
+  background-color: #2d323a;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: 'Roboto Mono', monospace;
+  color: #e0e0e0;
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.headerGroups {
+  display: flex;
+  width: 100%;
+}
+
+.headerGroup {
+  text-align: center;
+  padding: 2px;
+}
+
+.bitRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.bitLabel {
+  font-weight: bold;
+  color: #a0a0a0;
+  margin-right: 5px;
+  width: 50px;
+}
+
+.bitValue {
+  letter-spacing: 1px;
+  display: flex;
+  width: 100%;
+}
+
+.bitGroup {
+  padding: 2px;
+}
+
+.bitChunk {
+  margin-right: 5px;
+}
+
+.bitOne {
+  color: #00FF00;
+}
+
+.signBit {
+  background-color: rgba(255, 0, 0, 0.3);
+}
+
+.scaleBit {
+  background-color: rgba(255, 255, 0, 0.3);
+}
+
+.unusedBit {
+  background-color: rgba(85, 85, 85, 0.2);
+}

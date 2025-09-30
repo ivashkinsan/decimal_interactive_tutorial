@@ -1,0 +1,68 @@
+.comparisonSimulatorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.inputField {
+  margin: 0 5px;
+}
+
+.operator {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.compareButton {
+  margin-bottom: 10px;
+}
+
+.resultDisplay {
+  font-size: 1.1em;
+}
+
+.trueResult {
+  color: green;
+  font-weight: bold;
+}
+
+.falseResult {
+  color: red;
+  font-weight: bold;
+}
+
+.errorText {
+  color: red;
+}
+
+.bitwiseOperationsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  padding: 20px;
+  background-color: #2d323a;
+  border-radius: 8px;
+  color: white;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.visualizersContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.codeExampleContainer {
+  width: 100%;
+  margin-top: 10px;
+}

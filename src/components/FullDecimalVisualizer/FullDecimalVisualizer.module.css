@@ -1,0 +1,148 @@
+.visualizerContainer {
+  background-color: #2d323a;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-family: 'Roboto Mono', monospace;
+  color: #e0e0e0;
+}
+
+.visualizerContainer h3 {
+  color: #61dafb;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.5em;
+}
+
+.mantissaSection,
+.controlSection {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #3a3f47;
+  border-radius: 8px;
+}
+
+.mantissaSection h4,
+.controlSection h4 {
+  color: #a0a0a0;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.bitBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.bitLabel {
+  font-weight: bold;
+  color: #a0a0a0;
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+.bitRowVisual {
+  display: flex;
+  flex-wrap: wrap-reverse; /* To display bits[0] at the bottom, bits[2] at the top */
+  justify-content: flex-end; /* Align bits to the right (LSB) */
+  border: 1px solid #444;
+  border-radius: 4px;
+  padding: 5px;
+  background-color: #282c34;
+  width: 100%;
+  max-width: 700px; /* Limit width for better readability */
+  overflow-x: auto;
+}
+
+.bit {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7em;
+  border-left: 1px solid #333; /* Separator between bits */
+  color: #e0e0e0;
+  flex-shrink: 0;
+}
+
+.bit:first-child {
+  border-left: none;
+}
+
+.bitOne {
+  color: #00FF00; /* Matrix green for '1' bits */
+  font-weight: bold;
+  background-color: #003300; /* Darker green background for contrast */
+}
+
+/* Grouping for bits[3] */
+.signBit {
+  background-color: #e74c3c; /* Red for sign */
+  color: white;
+}
+
+.scaleBit {
+  background-color: #f39c12; /* Orange for scale */
+  color: white;
+}
+
+.unusedBit {
+  background-color: #34495e; /* Dark blue for unused */
+}
+
+/* Separators for bytes */
+.byte-start {
+  border-left: 2px solid #61dafb; /* Thicker line for byte start */
+}
+
+.bitValueHex {
+  font-family: 'Fira Code', monospace;
+  color: #f0f0f0;
+  font-size: 1em;
+  margin-top: 10px;
+}
+
+.explanation {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #444;
+  color: #a0a0a0;
+  font-size: 0.95em;
+  line-height: 1.6;
+}
+
+.explanation p {
+  margin-bottom: 8px;
+}
+
+.explanation strong {
+  color: #e0e0e0;
+}
+
+.controlsContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.controlGroup {
+  display: flex;
+  align-items: center;
+}
+
+.controlGroup label {
+  margin-right: 10px;
+}
+
+.formattedNumber {
+  text-align: center;
+  font-size: 1.2em;
+  margin-top: 20px;
+  color: #61dafb;
+}

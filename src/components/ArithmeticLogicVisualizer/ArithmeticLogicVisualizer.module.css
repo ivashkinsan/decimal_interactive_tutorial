@@ -1,0 +1,39 @@
+.arithmeticLogicVisualizerContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  background-color: #3a3f47;
+  border-radius: 8px;
+  color: white;
+  font-family: 'Roboto Mono', monospace;
+  width: 100%;
+}
+
+.arithmeticLogicVisualizerContainer h4 {
+  color: #61dafb;
+  margin-bottom: 10px;
+}
+
+.stepItem {
+  background-color: #2d323a;
+  padding: 10px;
+  border-radius: 5px;
+  border-left: 3px solid #61dafb;
+}
+
+.stepDescription {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #e0e0e0;
+}
+
+.stepValue {
+  font-size: 0.9em;
+  color: #a0a0a0;
+}
+
+.highlighted {
+  color: #00ff00; /* Highlight color for important values */
+  font-weight: bold;
+}

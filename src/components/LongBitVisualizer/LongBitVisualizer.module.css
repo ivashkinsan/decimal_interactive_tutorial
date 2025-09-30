@@ -1,0 +1,214 @@
+.longBitVisualizerContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.8em;
+  border: 1px solid #444;
+  border-radius: 4px;
+  padding: 5px;
+  background-color: #282c34;
+  color: #e0e0e0;
+}
+
+.bit {
+  width: 10px;
+  height: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.bitOne {
+  color: #00FF00; /* Matrix green for '1' bits */
+  font-weight: bold;
+}
+
+.bitSpace {
+  width: 5px;
+  flex-shrink: 0;
+}
+
+.wordSpace {
+
+  flex-shrink: 0;
+  border-left: 1px solid #666;
+  margin: 0 5px;
+}
+
+.bitHighlightAnd {
+  background-color: rgba(0, 255, 0, 0.3); /* Greenish for AND */
+}
+
+.bitHighlightOr {
+  background-color: rgba(255, 165, 0, 0.3); /* Orangish for OR */
+}
+
+.bitHighlightXor {
+  background-color: rgba(138, 43, 226, 0.3); /* Purplish for XOR */
+}
+
+.bitHighlightNot {
+  background-color: rgba(255, 0, 0, 0.3); /* Reddish for NOT */
+}
+
+.bitHighlightAnd11 { background-color: rgba(0, 255, 0, 0.5); } /* AND: 1 & 1 = 1 (strong green) */
+.bitHighlightAnd10 { background-color: rgba(0, 128, 0, 0.3); } /* AND: 1 & 0 = 0 (medium green) */
+.bitHighlightAnd01 { background-color: rgba(0, 128, 0, 0.3); } /* AND: 0 & 1 = 0 (medium green) */
+.bitHighlightAnd00 { background-color: rgba(0, 64, 0, 0.1); } /* AND: 0 & 0 = 0 (faint green) */
+
+.bitHighlightOr11 { background-color: rgba(255, 165, 0, 0.5); } /* OR: 1 | 1 = 1 (strong orange) */
+.bitHighlightOr10 { background-color: rgba(255, 165, 0, 0.3); } /* OR: 1 | 0 = 1 (medium orange) */
+.bitHighlightOr01 { background-color: rgba(255, 165, 0, 0.3); } /* OR: 0 | 1 = 1 (medium orange) */
+.bitHighlightOr00 { background-color: rgba(128, 82, 0, 0.1); } /* OR: 0 | 0 = 0 (faint orange) */
+
+.bitHighlightXor11 { background-color: rgba(138, 43, 226, 0.1); } /* XOR: 1 ^ 1 = 0 (faint purple) */
+.bitHighlightXor10 { background-color: rgba(138, 43, 226, 0.5); } /* XOR: 1 ^ 0 = 1 (strong purple) */
+.bitHighlightXor01 { background-color: rgba(138, 43, 226, 0.5); } /* XOR: 0 ^ 1 = 1 (strong purple) */
+.bitHighlightXor00 { background-color: rgba(69, 21, 113, 0.1); } /* XOR: 0 ^ 0 = 0 (faint purple) */
+
+.bitHighlightNot1 { background-color: rgba(255, 0, 0, 0.5); } /* NOT: 1 -> 0 (strong red) */
+.bitHighlightNot0 { background-color: rgba(128, 0, 0, 0.3); } /* NOT: 0 -> 1 (medium red) */
+
+/* New highlight classes for explicit bitwise comparison */
+
+/* AND Operation */
+.bitHighlightAndInputActive {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  font-weight: bold;
+}
+.bitHighlightAndInputInactive {
+  background-color: #388E3C; /* Darker green */
+  color: #ccc;
+}
+.bitHighlightAndResult {
+  background-color: #8BC34A; /* Light green */
+  color: black;
+  font-weight: bold;
+}
+
+/* OR Operation */
+.bitHighlightOrInputActive {
+  background-color: #FF9800; /* Orange */
+  color: white;
+  font-weight: bold;
+}
+.bitHighlightOrInputInactive {
+  background-color: #F57C00; /* Darker orange */
+  color: #ccc;
+}
+.bitHighlightOrResult {
+  background-color: #FFB74D; /* Light orange */
+  color: black;
+  font-weight: bold;
+}
+
+/* XOR Operation */
+.bitHighlightXorInputActive {
+  background-color: #9C27B0; /* Purple */
+  color: white;
+  font-weight: bold;
+}
+.bitHighlightXorInputInactive {
+  background-color: #7B1FA2; /* Darker purple */
+  color: #ccc;
+}
+.bitHighlightXorResult {
+  background-color: #E1BEE7; /* Light purple */
+  color: black;
+  font-weight: bold;
+}
+
+/* NOT Operation */
+.bitHighlightNotInputActive {
+  background-color: #F44336; /* Red */
+  color: white;
+  font-weight: bold;
+}
+.bitHighlightNotInputInactive {
+  background-color: #D32F2F; /* Darker red */
+  color: #ccc;
+}
+.bitHighlightNotResult {
+  background-color: #FFCDD2; /* Light red */
+  color: black;
+  font-weight: bold;
+}
+
+/* New highlight classes for explicit bitwise comparison */
+
+/* AND Operation */
+.bitHighlightAndInputActive {
+  background-color: rgba(0, 255, 0, 0.7); /* Strong green for active input bits */
+  color: black;
+}
+.bitHighlightAndInputInactive {
+  background-color: rgba(0, 128, 0, 0.2); /* Faint green for inactive input bits */
+}
+.bitHighlightAndResult {
+  background-color: rgba(0, 255, 0, 1); /* Solid green for result bit */
+  color: black;
+  font-weight: bold;
+}
+
+/* OR Operation */
+.bitHighlightOrInputActive {
+  background-color: rgba(255, 165, 0, 0.7); /* Strong orange for active input bits */
+  color: black;
+}
+.bitHighlightOrInputInactive {
+  background-color: rgba(255, 165, 0, 0.2); /* Faint orange for inactive input bits */
+}
+.bitHighlightOrResult {
+  background-color: rgba(255, 165, 0, 1); /* Solid orange for result bit */
+  color: black;
+  font-weight: bold;
+}
+
+/* XOR Operation */
+.bitHighlightXorInputActive {
+  background-color: rgba(138, 43, 226, 0.7); /* Strong purple for active input bits */
+  color: black;
+}
+.bitHighlightXorInputInactive {
+  background-color: rgba(138, 43, 226, 0.2); /* Faint purple for inactive input bits */
+}
+.bitHighlightXorResult {
+  background-color: rgba(138, 43, 226, 1); /* Solid purple for result bit */
+  color: black;
+  font-weight: bold;
+}
+
+/* NOT Operation */
+.bitHighlightNotInputActive {
+  background-color: rgba(255, 0, 0, 0.7); /* Strong red for active input bits */
+  color: black;
+}
+.bitHighlightNotInputInactive {
+  background-color: rgba(128, 0, 0, 0.2); /* Faint red for inactive input bits */
+}
+.bitHighlightNotResult {
+  background-color: rgba(255, 0, 0, 1); /* Solid red for result bit */
+  color: black;
+  font-weight: bold;
+}
+
+.bitHighlightAnd11 { background-color: rgba(0, 255, 0, 0.5); } /* AND: 1 & 1 = 1 (strong green) */
+.bitHighlightAnd10 { background-color: rgba(0, 128, 0, 0.3); } /* AND: 1 & 0 = 0 (medium green) */
+.bitHighlightAnd01 { background-color: rgba(0, 128, 0, 0.3); } /* AND: 0 & 1 = 0 (medium green) */
+.bitHighlightAnd00 { background-color: rgba(0, 64, 0, 0.1); } /* AND: 0 & 0 = 0 (faint green) */
+
+.bitHighlightOr11 { background-color: rgba(255, 165, 0, 0.5); } /* OR: 1 | 1 = 1 (strong orange) */
+.bitHighlightOr10 { background-color: rgba(255, 165, 0, 0.3); } /* OR: 1 | 0 = 1 (medium orange) */
+.bitHighlightOr01 { background-color: rgba(255, 165, 0, 0.3); } /* OR: 0 | 1 = 1 (medium orange) */
+.bitHighlightOr00 { background-color: rgba(128, 82, 0, 0.1); } /* OR: 0 | 0 = 0 (faint orange) */
+
+.bitHighlightXor11 { background-color: rgba(138, 43, 226, 0.1); } /* XOR: 1 ^ 1 = 0 (faint purple) */
+.bitHighlightXor10 { background-color: rgba(138, 43, 226, 0.5); } /* XOR: 1 ^ 0 = 1 (strong purple) */
+.bitHighlightXor01 { background-color: rgba(138, 43, 226, 0.5); } /* XOR: 0 ^ 1 = 1 (strong purple) */
+.bitHighlightXor00 { background-color: rgba(69, 21, 113, 0.1); } /* XOR: 0 ^ 0 = 0 (faint purple) */
+
+.bitHighlightNot1 { background-color: rgba(255, 0, 0, 0.5); } /* NOT: 1 -> 0 (strong red) */
+.bitHighlightNot0 { background-color: rgba(128, 0, 0, 0.3); } /* NOT: 0 -> 1 (medium red) */

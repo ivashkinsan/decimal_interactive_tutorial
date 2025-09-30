@@ -1,0 +1,28 @@
+
+.operations button.active {
+    background-color: #007bff;
+    color: white;
+}
+
+#bitwise-result-output {
+    color: #333;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.code-display {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 15px;
+}
+
+.code-display pre {
+    margin: 0;
+}
+
+.code-display code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1em;
+}

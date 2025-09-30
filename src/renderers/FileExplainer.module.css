@@ -1,0 +1,23 @@
+.fileExplainerContainer {
+  width: 100%;
+}
+
+.fileTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.fileTable th, .fileTable td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.fileTable th {
+  background-color: #f2f2f2;
+}
+
+.folderHeader {
+  background-color: #e0e0e0;
+  font-weight: bold;
+}

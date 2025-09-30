@@ -1,0 +1,1 @@
+export const s21MultiplyBy10 = {};

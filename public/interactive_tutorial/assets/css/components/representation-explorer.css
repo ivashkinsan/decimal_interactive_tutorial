@@ -1,0 +1,138 @@
+/* Representation Explorer & Wizard Diagrams */
+.bit-visualizer {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
+}
+.bit {
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+    border: 1px solid #eee;
+    margin: 1px;
+    font-size: 0.7em;
+    color: #fff;
+    background-color: #7f8c8d; /* Default background color */
+}
+.bit.bit-one {
+    font-weight: bold;
+    color: #000;
+}
+.bit.sign { background-color: #c0392b; }
+.bit.scale { background-color: #2980b9; }
+.bit.unused { background-color: #7f8c8d; }
+.bit.mantissa { background-color: #27ae60; }
+
+.full-decimal-visualizer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.decimal-part {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.decimal-label {
+    font-weight: bold;
+    font-family: monospace;
+    width: 60px;
+}
+
+.decimal-part .bit-visualizer {
+    margin-top: 0;
+    border: none;
+    padding: 0;
+    flex-wrap: nowrap;
+}
+
+/* Memory Diagram */
+.memory-container { display: flex; gap: 20px; }
+.memory-area { flex: 1; border: 2px dashed #ccc; padding: 10px; border-radius: 5px; min-height: 100px; }
+.stack-area { border-color: #27ae60; }
+.heap-area { border-color: #f39c12; }
+.memory-area h4 { margin-top: 0; text-align: center; }
+.mem-block { background: #eee; padding: 10px; border-radius: 4px; text-align: center; margin-top: 10px; }
+.pointer { display: inline-block; }
+.code-snippet { font-family: monospace; background: #f0f0f0; padding: 5px; border-radius: 3px; }
+
+/* bits[3] Explorer */
+.bits3-explorer .result-display { margin-top: 15px; font-weight: bold; }
+.switch { position: relative; display: inline-block; width: 50px; height: 28px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider-round { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 28px; }
+.slider-round:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+input:checked + .slider-round { background-color: #c0392b; }
+input:checked + .slider-round:before { transform: translateX(22px); }
+
+input[type=range] { -webkit-appearance: none; margin: 10px 0; width: 150px; background: transparent; }
+input[type=range]:focus { outline: none; }
+input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 8px; cursor: pointer; background: #2980b9; border-radius: 5px; }
+input[type=range]::-webkit-slider-thumb { height: 20px; width: 20px; border-radius: 50%; background: #fff; border: 2px solid #2980b9; cursor: pointer; -webkit-appearance: none; margin-top: -8px; }
+
+/* bitwise-operations.css */
+.bitwise-operations-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.decimal-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.operations {
+    display: flex;
+    gap: 10px;
+}
+
+/* bit-shifting.css */
+.bit-shifting-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.shift-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* scale-sign-encoder.css */
+.scale-sign-encoder-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* precision-comparison.css */
+.precision-comparison-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.comparison-group {
+    display: flex;
+    gap: 20px;
+}
+
+.representation-group {
+    flex: 1;
+}
+
+.small-bits .bit {
+    width: 10px;
+    height: 10px;
+    line-height: 10px;
+    font-size: 0.6em;
+}

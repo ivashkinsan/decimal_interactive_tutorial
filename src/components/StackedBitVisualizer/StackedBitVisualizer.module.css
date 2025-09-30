@@ -1,0 +1,59 @@
+.stackedBitVisualizerContainer {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.6em;
+  color: #e0e0e0;
+  width: 100%;
+}
+
+.bitRow {
+  display: flex;
+  align-items: center;
+  /* margin-bottom: 5px; */
+}
+
+.rowLabel {
+  font-weight: bold;
+  /* margin-right: 10px; */
+  width: 30px; /* Adjust as needed */
+  flex-shrink: 0;
+}
+
+.mantissaContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  border: 1px solid #444;
+  border-radius: 4px;
+  /* padding: 15px; */
+  background-color: #282c34;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.bit {
+  width: 10px;
+  height: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.bitOne {
+  color: #00FF00; /* Matrix green for '1' bits */
+  font-weight: bold;
+}
+
+.bitSpace {
+  width: 5px;
+  flex-shrink: 0;
+}
+
+.wordSpace {
+  width: 15px;
+  flex-shrink: 0;
+  border-left: 1px solid #666;
+  margin: 0 5px;
+}

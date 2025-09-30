@@ -1,0 +1,149 @@
+.explorerContainer {
+  padding: 20px;
+  background-color: #282c34;
+  color: white;
+  border-radius: 8px;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.errorText {
+  color: #ff6b6b;
+  margin-bottom: 15px;
+}
+
+.inputGroup {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.inputField {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #61dafb;
+  background-color: #3a3f47;
+  color: white;
+  font-size: 1em;
+  flex-grow: 1;
+}
+
+.convertButton {
+  padding: 10px 15px;
+  border-radius: 4px;
+  border: none;
+  background-color: #61dafb;
+  color: #282c34;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.convertButton:hover {
+  background-color: #21a1f1;
+}
+
+.convertButton:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+.bitsDisplay {
+  margin-top: 20px;
+  background-color: #3a3f47;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.bitRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  border-bottom: 1px solid #444;
+}
+
+.bitRow:last-child {
+  border-bottom: none;
+}
+
+.bitLabel {
+  font-weight: bold;
+  color: #a0a0a0;
+}
+
+.bitValue {
+  font-family: 'Fira Code', monospace;
+  color: #e0e0e0;
+}
+
+/* Wizard Styles */
+.wizardHeader {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.wizardHeader h3 {
+  color: #61dafb;
+  font-size: 1.8em;
+  margin: 0;
+}
+
+.wizardBody {
+  background-color: #3a3f47;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.wizardPrologue,
+.wizardEpilogue {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.wizardInteractiveArea {
+  min-height: 150px; /* Ensure some space for interactive components */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px dashed #61dafb;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.wizardNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.wizardNav button {
+  padding: 10px 20px;
+  border-radius: 4px;
+  border: none;
+  background-color: #61dafb;
+  color: #282c34;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.wizardNav button:hover:not(:disabled) {
+  background-color: #21a1f1;
+}
+
+.wizardNav button:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+.stepIndicator {
+  font-size: 1.1em;
+  color: #a0a0a0;
+}
+
+.placeholder {
+  color: #a0a0a0;
+  font-style: italic;
+}
