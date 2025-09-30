@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styles from './ArithmeticSimulator.module.css'; // Reusing general arithmetic styles
 import ArithmeticLogicVisualizer from '../components/ArithmeticLogicVisualizer/ArithmeticLogicVisualizer'; // New import
 import { S21Decimal, createS21Decimal, s21DecimalToNumber, getS21DecimalSign, getS21DecimalScale, setS21DecimalSign, setS21DecimalScale, divMantissas } from '../utils/s21DecimalJs'; // Added more utility functions
@@ -18,28 +18,11 @@ const DivisionSimulator: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [steps, setSteps] = useState<ArithmeticStep[]>([]); // New state for steps
 
-  useEffect(() => {
-    updateAll();
-  }, [value1, value2]);
-
-  const updateAll = () => {
-    setError(null);
-    setSteps([]); // Clear steps on new calculation
-
-    try {
-      const dec1 = createS21Decimal(value1);
-      const dec2 = createS21Decimal(value2);
-      calculateDivision(dec1, dec2);
-    } catch (e: any) {
-      setError(e.message || "Произошла ошибка.");
-    }
-  };
-
-  const calculateDivision = (dec1: S21Decimal, dec2: S21Decimal) => {
+  const calculateDivision = useCallback((dec1: S21Decimal, dec2: S21Decimal) => {
     const currentSteps: ArithmeticStep[] = [];
     try {
-      let d1 = { ...dec1 };
-      let d2 = { ...dec2 };
+      const d1 = { ...dec1 };
+      const d2 = { ...dec2 };
 
       currentSteps.push({
         description: `Исходные числа: Число 1 = ${s21DecimalToNumber(d1)}, Число 2 = ${s21DecimalToNumber(d2)}`,
@@ -47,66 +30,72 @@ const DivisionSimulator: React.FC = () => {
         value2: s21DecimalToNumber(d2).toString(),
       });
 
-      // 1. Обработка деления на ноль
       if (s21DecimalToNumber(d2) === 0) {
         throw new Error("Деление на ноль невозможно.");
       }
-      currentSteps.push({
-        description: `Проверка деления на ноль: Делитель (${s21DecimalToNumber(d2)}) не равен нулю.`,
-      });
+      currentSteps.push({ description: `Проверка деления на ноль: Делитель (${s21DecimalToNumber(d2)}) не равен нулю.` });
 
-      // 2. Определение знака
       const sign1 = getS21DecimalSign(d1);
       const sign2 = getS21DecimalSign(d2);
       const finalSign = (sign1 === sign2) ? 0 : 1;
-      currentSteps.push({
-        description: `Определение знака результата: (${sign1 === 0 ? '+' : '-'}) / (${sign2 === 0 ? '+' : '-'}) = (${finalSign === 0 ? '+' : '-'})`,
-        highlight: 'sign1',
-      });
+      currentSteps.push({ description: `Определение знака результата: (${sign1 === 0 ? '+' : '-'}) / (${sign2 === 0 ? '+' : '-'}) = (${finalSign === 0 ? '+' : '-'})`, highlight: 'sign1' });
 
-      // 3. Вычитание масштабов (для начального масштаба результата)
       const scale1 = getS21DecimalScale(d1);
       const scale2 = getS21DecimalScale(d2);
       let finalScale = scale1 - scale2;
-      currentSteps.push({
-        description: `Вычитание масштабов: ${scale1} - ${scale2} = ${finalScale}.`,
-        highlight: 'scale1',
-      });
+      currentSteps.push({ description: `Вычитание масштабов: ${scale1} - ${scale2} = ${finalScale}.`, highlight: 'scale1' });
 
-      // 4. Деление мантисс
-      currentSteps.push({
-        description: `Деление мантиссы Числа 1 на мантиссу Числа 2.`,
-      });
+      currentSteps.push({ description: `Деление мантиссы Числа 1 на мантиссу Числа 2.` });
       const mantissaResult = divMantissas(d1, d2);
-      currentSteps.push({
-        description: `Результат деления мантисс: ${s21DecimalToNumber(mantissaResult)}`,
-        result: s21DecimalToNumber(mantissaResult).toString(),
-      });
+      currentSteps.push({ description: `Результат деления мантисс: ${s21DecimalToNumber(mantissaResult)}`, result: s21DecimalToNumber(mantissaResult).toString() });
 
-      // 5. Округление (упрощено)
-      currentSteps.push({
-        description: `Округление результата до необходимой точности (упрощено).`,
-      });
+      currentSteps.push({ description: `Округление результата до необходимой точности (упрощено).` });
 
-      // 6. Установка знака и масштаба результата
       setS21DecimalSign(mantissaResult, finalSign);
+      if (finalScale < 0) {
+          // This logic is simplified. In reality, you would need to multiply the dividend
+          // by 10 for each negative scale point before division.
+          // For this visualization, we'll just note it and set scale to 0.
+          currentSteps.push({ description: `Отрицательный итоговый масштаб (${finalScale}). Для корректного результата нужно было бы домножить делимое. Устанавливаем масштаб 0.`});
+          finalScale = 0;
+      }
       setS21DecimalScale(mantissaResult, finalScale);
-      currentSteps.push({
-        description: `Установка финального знака (${finalSign === 0 ? '+' : '-'}) и масштаба (${finalScale}) для результата.`,
-        result: s21DecimalToNumber(mantissaResult).toString(),
-        highlight: 'result',
-      });
+      currentSteps.push({ description: `Установка финального знака (${finalSign === 0 ? '+' : '-'}) и масштаба (${finalScale}) для результата.`, result: s21DecimalToNumber(mantissaResult).toString(), highlight: 'result' });
 
       const finalResultDecimal = mantissaResult;
       setNumericalResult(s21DecimalToNumber(finalResultDecimal).toString());
       setSteps(currentSteps);
 
-    } catch (e: any) {
-      setError(e.message || "Произошла ошибка во время деления.");
+    } catch (e: unknown) {
+        if (e instanceof Error) {
+            setError(e.message);
+        } else {
+            setError("Произошла неизвестная ошибка во время деления.");
+        }
       setNumericalResult("Ошибка");
-      setSteps(currentSteps); // Still show steps up to the error
+      setSteps(currentSteps);
     }
-  };
+  }, []);
+
+  const updateAll = useCallback(() => {
+    setError(null);
+    setSteps([]);
+    try {
+      const dec1 = createS21Decimal(value1);
+      const dec2 = createS21Decimal(value2);
+      calculateDivision(dec1, dec2);
+    } catch (e: unknown) {
+        if (e instanceof Error) {
+            setError(e.message);
+        } else {
+            setError("Произошла неизвестная ошибка.");
+        }
+    }
+  }, [value1, value2, calculateDivision]);
+
+  useEffect(() => {
+    updateAll();
+  }, [updateAll]);
 
   return (
     <div className={styles.arithmeticSimulatorContainer}>
@@ -116,8 +105,7 @@ const DivisionSimulator: React.FC = () => {
         <div className={styles.decimalInputGroup}>
           <label>Число 1:</label>
           <input
-            type="number"
-            step="any"
+            type="text"
             value={value1}
             onChange={(e) => setValue1(e.target.value)}
             className={styles.inputField}
@@ -127,8 +115,7 @@ const DivisionSimulator: React.FC = () => {
         <div className={styles.decimalInputGroup}>
           <label>Число 2:</label>
           <input
-            type="number"
-            step="any"
+            type="text"
             value={value2}
             onChange={(e) => setValue2(e.target.value)}
             className={styles.inputField}

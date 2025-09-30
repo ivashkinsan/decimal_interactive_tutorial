@@ -60,7 +60,7 @@ export const createS21Decimal = (value: number | string): S21Decimal => {
   }
 
   // Convert to BigInt to handle large integers for mantissa
-  let mantissa = BigInt(Math.round(num * Math.pow(10, scale)));
+  const mantissa = BigInt(Math.round(num * Math.pow(10, scale)));
 
   // Populate bits[0], bits[1], bits[2]
   decimal.bits[0] = Number(mantissa & 0xFFFFFFFFn);
@@ -84,7 +84,7 @@ export const s21DecimalToNumber = (decimal: S21Decimal): number => {
   const scale = getScale(decimal.bits[3]);
 
   // Reconstruct mantissa from bits[0], bits[1], bits[2]
-  let mantissa = BigInt(decimal.bits[0]) |
+  const mantissa = BigInt(decimal.bits[0]) |
                  (BigInt(decimal.bits[1]) << 32n) |
                  (BigInt(decimal.bits[2]) << 64n);
 
@@ -114,11 +114,11 @@ export const setS21DecimalScale = (decimal: S21Decimal, scale: number): void => 
   decimal.bits[3] = setScale(decimal.bits[3], scale);
 };
 
-const getMantissaAsBigInt = (decimal: S21Decimal): BigInt => {
+const getMantissaAsBigInt = (decimal: S21Decimal): bigint => {
     return BigInt(decimal.bits[0]) | (BigInt(decimal.bits[1]) << 32n) | (BigInt(decimal.bits[2]) << 64n);
 }
 
-const setMantissaFromBigInt = (decimal: S21Decimal, mantissa: BigInt): void => {
+const setMantissaFromBigInt = (decimal: S21Decimal, mantissa: bigint): void => {
     decimal.bits[0] = Number(mantissa & 0xFFFFFFFFn);
     decimal.bits[1] = Number((mantissa >> 32n) & 0xFFFFFFFFn);
     decimal.bits[2] = Number((mantissa >> 64n) & 0xFFFFFFFFn);
@@ -321,7 +321,7 @@ export const s21DecimalToFloat = (dec: S21Decimal): number => {
 
 // --- Utility Operations (Simplified JS implementations) ---
 export const s21Round = (dec: S21Decimal, scale: number): S21Decimal => {
-  let num = s21DecimalToNumber(dec);
+  const num = s21DecimalToNumber(dec);
   const factor = Math.pow(10, scale);
   let rounded = Math.round(num * factor) / factor;
 
@@ -339,16 +339,16 @@ export const s21Round = (dec: S21Decimal, scale: number): S21Decimal => {
 };
 
 export const s21Truncate = (dec: S21Decimal): S21Decimal => {
-  let num = s21DecimalToNumber(dec);
+  const num = s21DecimalToNumber(dec);
   return createS21Decimal(Math.trunc(num));
 };
 
 export const s21Negate = (dec: S21Decimal): S21Decimal => {
-  let num = s21DecimalToNumber(dec);
+  const num = s21DecimalToNumber(dec);
   return createS21Decimal(-num);
 };
 
 export const s21Floor = (dec: S21Decimal): S21Decimal => {
-  let num = s21DecimalToNumber(dec);
+  const num = s21DecimalToNumber(dec);
   return createS21Decimal(Math.floor(num));
 };

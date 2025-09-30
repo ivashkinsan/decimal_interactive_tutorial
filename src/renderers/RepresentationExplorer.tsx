@@ -9,6 +9,8 @@ const RepresentationExplorer: React.FC = () => {
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [s21DecimalBits, setS21DecimalBits] = useState<number[]>([0, 0, 0, 0]); // Initialize for the first step
 
+  const currentStepData: StepData = representationExplorerSteps[currentStep];
+
   useEffect(() => {
     // Reset or set initial bits when step changes
     if (currentStepData.interactiveComponent === 'final-example') {
@@ -18,9 +20,7 @@ const RepresentationExplorer: React.FC = () => {
     } else if (currentStepData.interactiveComponent === 'full-decimal-visualizer') {
       setS21DecimalBits([0, 0, 0, 0]);
     }
-  }, [currentStep]);
-
-  const currentStepData: StepData = representationExplorerSteps[currentStep];
+  }, [currentStep, currentStepData.interactiveComponent]);
 
   const handlePrev = () => {
     setCurrentStep((prev) => Math.max(0, prev - 1));

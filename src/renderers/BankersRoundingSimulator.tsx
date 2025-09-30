@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styles from './BankersRoundingSimulator.module.css';
 import { BankersRoundingVisualizer } from './BankersRoundingVisualizer';
 import { createS21Decimal, s21DecimalToNumber, s21Round } from '../utils/s21DecimalJs';
@@ -9,23 +9,25 @@ export const BankersRoundingSimulator: React.FC = () => {
   const [roundedResult, setRoundedResult] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    handleRound();
-  }, [inputValue, scale]);
-
-  const handleRound = () => {
+  const handleRound = useCallback(() => {
     setError(null);
-
     try {
       const decimal = createS21Decimal(inputValue);
       const resultDecimal = s21Round(decimal, scale);
       setRoundedResult(s21DecimalToNumber(resultDecimal));
-
-    } catch (e: any) {
-      setError(e.message || "Произошла ошибка во время округления.");
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        setError(e.message);
+      } else {
+        setError("Произошла неизвестная ошибка во время округления.");
+      }
       setRoundedResult(null);
     }
-  };
+  }, [inputValue, scale]);
+
+  useEffect(() => {
+    handleRound();
+  }, [handleRound]);
 
   return (
     <div className={styles.bankersRoundingSimulatorContainer}>
@@ -35,8 +37,7 @@ export const BankersRoundingSimulator: React.FC = () => {
         <div className={styles.inputGroup}>
           <label htmlFor="input-value">Значение:</label>
           <input
-            type="number"
-            step="any"
+            type="text" // Changed to text for better input flexibility
             id="input-value"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
@@ -59,7 +60,7 @@ export const BankersRoundingSimulator: React.FC = () => {
         </div>
       </div>
 
-      {roundedResult !== null && (
+      {roundedResult !== null && !error && (
         <BankersRoundingVisualizer 
           inputValue={parseFloat(inputValue)}
           scale={scale}

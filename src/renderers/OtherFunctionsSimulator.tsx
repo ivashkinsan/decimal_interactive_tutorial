@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styles from './OtherFunctionsSimulator.module.css';
 import { OtherFunctionsVisualizer } from './OtherFunctionsVisualizer';
 import { S21Decimal, createS21Decimal, s21Truncate, s21Negate, s21Floor, s21Round } from '../utils/s21DecimalJs';
@@ -10,11 +10,7 @@ export const OtherFunctionsSimulator: React.FC = () => {
   const [resultDecimal, setResultDecimal] = useState<S21Decimal | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    handleOperation();
-  }, [inputValue, operationType]);
-
-  const handleOperation = () => {
+  const handleOperation = useCallback(() => {
     setError(null);
     setOriginalDecimal(null);
     setResultDecimal(null);
@@ -35,8 +31,6 @@ export const OtherFunctionsSimulator: React.FC = () => {
           resDecimal = s21Floor(decimal);
           break;
         case 'round':
-          // Assuming s21Round is implemented in s21DecimalJs.ts
-          // It should perform banker's rounding.
           resDecimal = s21Round(decimal, 0); // Round to 0 decimal places
           break;
         default:
@@ -46,10 +40,18 @@ export const OtherFunctionsSimulator: React.FC = () => {
 
       setResultDecimal(resDecimal);
 
-    } catch (e: any) {
-      setError(e.message || "Произошла ошибка во время операции.");
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        setError(e.message);
+      } else {
+        setError("Произошла неизвестная ошибка во время операции.");
+      }
     }
-  };
+  }, [inputValue, operationType]);
+
+  useEffect(() => {
+    handleOperation();
+  }, [handleOperation]);
 
   return (
     <div className={styles.otherFunctionsSimulatorContainer}>
@@ -58,8 +60,7 @@ export const OtherFunctionsSimulator: React.FC = () => {
       <div className={styles.inputGroup}>
         <label htmlFor="input-value">Значение:</label>
         <input
-          type="number"
-          step="any"
+          type="text"
           id="input-value"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}

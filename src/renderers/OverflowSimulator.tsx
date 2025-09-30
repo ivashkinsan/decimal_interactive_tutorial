@@ -6,7 +6,7 @@ const styles = {
   // ... (previous styles are kept, only new/modified are shown)
   container: {
     display: 'flex',
-    flexDirection: 'column' as 'column',
+    flexDirection: 'column' as const,
     alignItems: 'center',
     gap: '20px',
     padding: '20px',
@@ -36,7 +36,7 @@ const styles = {
     marginTop: '20px',
   },
   barContainer: {
-    position: 'relative' as 'relative',
+    position: 'relative' as const,
     height: '50px',
     backgroundColor: '#444',
     borderRadius: '5px',
@@ -44,20 +44,20 @@ const styles = {
     border: '1px solid #61dafb',
   },
   mantissaBar: {
-    position: 'absolute' as 'absolute',
+    position: 'absolute' as const,
     height: '100%',
     backgroundColor: '#61dafb',
     transition: 'width 0.5s ease-in-out',
   },
   overflowBar: {
-    position: 'absolute' as 'absolute',
+    position: 'absolute' as const,
     height: '100%',
     backgroundColor: '#ff6b6b',
     left: '100%',
     transition: 'width 0.5s ease-in-out',
   },
   maxLine: {
-    position: 'absolute' as 'absolute',
+    position: 'absolute' as const,
     left: '100%',
     top: 0,
     bottom: 0,
@@ -72,7 +72,7 @@ const styles = {
   result: {
     marginTop: '20px',
     fontSize: '1.5em',
-    fontWeight: 'bold' as 'bold',
+    fontWeight: 'bold' as const,
   },
   success: { color: '#98c379' },
   overflow: { color: '#ff6b6b' },
@@ -82,17 +82,17 @@ const styles = {
     backgroundColor: '#282c34',
     borderRadius: '5px',
     width: '100%',
-    textAlign: 'left' as 'left',
+    textAlign: 'left' as const,
   },
   bitString: {
     fontFamily: 'monospace',
     fontSize: '0.9em',
-    wordBreak: 'break-all' as 'break-all',
+    wordBreak: 'break-all' as const,
     lineHeight: '1.6',
   },
   overflowBit: {
     color: '#ff6b6b',
-    fontWeight: 'bold' as 'bold',
+    fontWeight: 'bold' as const,
   },
   oneBit: {
     color: '#98c379',
@@ -105,12 +105,12 @@ const styles = {
 
 const MAX_MANTISSA = (1n << 96n) - 1n;
 
-const getMantissaAsBigInt = (decimal: S21Decimal): BigInt => {
+const getMantissaAsBigInt = (decimal: S21Decimal): bigint => {
     return BigInt(decimal.bits[0]) | (BigInt(decimal.bits[1]) << 32n) | (BigInt(decimal.bits[2]) << 64n);
 }
 
 const BitString: React.FC<{ value: number, label: string }> = ({ value, label }) => {
-  let bitStr = (value >>> 0).toString(2).padStart(32, '0');
+  const bitStr = (value >>> 0).toString(2).padStart(32, '0');
   const parts = bitStr.match(/.{1,8}/g) || [];
   return (
     <div style={styles.bitString}>
@@ -151,7 +151,7 @@ const OverflowSimulator: React.FC = () => {
         setTotalMantissa(m1 > m2 ? m1 - m2 : m2 - m1);
       }
 
-    } catch (e) {
+    } catch {
       setDec1(null);
       setDec2(null);
       setTotalMantissa(BigInt(0));

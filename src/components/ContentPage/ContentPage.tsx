@@ -23,8 +23,13 @@ interface ContentItem {
   type?: string; // Add type for separators
 }
 
+type InteractiveComponentProps = {
+  wasmLoaded: boolean;
+  comparisonType?: string;
+};
+
 // Map interactive component names to their actual components
-const interactiveComponents: { [key: string]: React.ComponentType<any> } = {
+const interactiveComponents: { [key: string]: React.ComponentType<InteractiveComponentProps> } = {
   arithmetic_simulator: ArithmeticSimulator,
   representation_explorer: RepresentationExplorer,
   file_explainer: FileExplainer,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styles from './ConversionSimulator.module.css';
 import ConversionVisualizer from './ConversionVisualizer'; // Новый импорт
 import { S21Decimal, createS21Decimal, s21FromIntToDecimal, s21FromFloatToDecimal } from '../utils/s21DecimalJs';
@@ -9,20 +9,13 @@ export const ConversionSimulator: React.FC = () => {
   const [s21Decimal, setS21Decimal] = useState<S21Decimal | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  // Запускаем преобразование при первом рендере
-  useEffect(() => {
-    handleConvert();
-  }, []);
-
-  const handleConvert = () => {
+  const handleConvert = useCallback(() => {
     setError(null);
     setS21Decimal(null);
 
     try {
       let decimal: S21Decimal | null = null;
 
-      // В зависимости от типа преобразования, мы либо создаем decimal из строки,
-      // либо создаем его для последующего преобразования в другой тип.
       switch (conversionType) {
         case 'float_to_decimal':
           decimal = s21FromFloatToDecimal(inputValue);
@@ -40,16 +33,19 @@ export const ConversionSimulator: React.FC = () => {
       }
       setS21Decimal(decimal);
 
-    } catch (e: any) {
-      setError(e.message || "Произошла ошибка во время преобразования.");
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        setError(e.message);
+      } else {
+        setError("Произошла неизвестная ошибка во время преобразования.");
+      }
       setS21Decimal(null);
     }
-  };
+  }, [inputValue, conversionType]);
 
-  // Выполняем преобразование при изменении инпута или типа
   useEffect(() => {
     handleConvert();
-  }, [inputValue, conversionType]);
+  }, [handleConvert]);
 
   return (
     <div className={styles.conversionSimulatorContainer}>
@@ -84,7 +80,6 @@ export const ConversionSimulator: React.FC = () => {
         </div>
       </div>
 
-      {/* Новый визуализатор, который показывает логику */} 
       <ConversionVisualizer 
         inputValue={inputValue}
         conversionType={conversionType}

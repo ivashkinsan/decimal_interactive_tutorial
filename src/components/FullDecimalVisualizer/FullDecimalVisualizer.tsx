@@ -12,7 +12,7 @@ const FullDecimalVisualizer: React.FC<FullDecimalVisualizerProps> = ({ s21Decima
 
   useEffect(() => {
     const newBits3 = (sign << 31) | (scale << 16);
-    const newBits = [...s21DecimalBits];
+    const newBits = [...initialBits];
     newBits[3] = newBits3;
     setS21DecimalBits(newBits);
   }, [sign, scale, initialBits]);

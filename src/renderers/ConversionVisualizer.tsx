@@ -44,7 +44,7 @@ const intToBits = (num: number): string => {
 };
 
 
-const getMantissaAsBigInt = (decimal: S21Decimal): BigInt => {
+const getMantissaAsBigInt = (decimal: S21Decimal): bigint => {
     return BigInt(decimal.bits[0]) | (BigInt(decimal.bits[1]) << 32n) | (BigInt(decimal.bits[2]) << 64n);
 }
 
